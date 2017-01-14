@@ -6,13 +6,18 @@ class Vineyards {
     private $people = array();
 
     public function processWine() {
-       
+       try{
         $this->readPeopleWineFromFile();//read data wine and people from file given as input and I use first input given by 
         return $this->processDistribute();// prosess for wine distribution among peoples
+          }catch (Exception $e)
+       {
+         return $e->getMessage();  
+       }
     }
   private function readPeopleWineFromFile()
   {    ini_set('max_execution_time', 0);//unlimited time execution
        ini_set('memory_limit', '-1');  //unlimited buffer memory
+       try{
        $handle = @fopen('file.txt', 'r');//file given at root level and 
        $handle = @fopen('person_wine_3.txt', 'r');//file given at root level
         if ($handle) {
@@ -24,13 +29,17 @@ class Vineyards {
             }
             fclose($handle);
         }
-
+//print_r($wine);die;
         $this->wine   = $wine;//set wine for use in other function
         $this->people = $people;//set people for use in other function
+       } catch (Exception $e)
+       {
+         return $e->getMessage();  
+       }
   }
 
   private function processDistribute() {
-        
+        try{
         $result             = array();
         $unique_wine        = $this->wine;
         $unique_people      = $this->people;
@@ -50,6 +59,10 @@ class Vineyards {
         $result['total_wine_sell']       = $count_unique_wine;
         $result['wine_distibute_people'] = $data;
         return $result;
+       }catch (Exception $e)
+       {
+         return $e->getMessage();  
+       }
     }
 
 }
