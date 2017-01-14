@@ -1,0 +1,4 @@
+Hi Sir,
+I use person_wine_3.txt file as Input to get wine and People
+For execute ,Run in browser
+http://localhost/ABP/test.php
